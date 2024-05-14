@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Orders</title>
+    <link rel="stylesheet" href="{% static "css/user_orders_css.css" %}">
+</head>
+<body>
+    <div class="user-info">
+        <h1 class="user-name">Cart of {{ user.username }}</h1>
+    </div>
+    <div class="games-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Game Photo</th>
+                    <th>Game Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for game in games %}
+                <tr>
+                    <td><img src={{ game.game_photo.url }} alt="{{ game.game_name }}" class="game-photo"></td>
+                    <td>{{ game.game_name }}</td>
+                    <td>{{ game.price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

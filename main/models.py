@@ -21,10 +21,6 @@ class Game(models.Model):
     release_date = models.DateField()
     developer = models.ForeignKey(GameDeveloper, on_delete= models.CASCADE, related_name='games')
     game_photo = models.ImageField(upload_to='games_photo/', blank=True, null=True)
-
-
-    def __str__(self):
-        return self.game_name
     
         
 

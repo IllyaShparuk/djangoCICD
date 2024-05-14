@@ -21,12 +21,15 @@ from django.urls import path, include
 from djangoCICD import settings
 from main.views import home
 from account.views import sign_up
+from cart.views import add_to_cart, open_cart
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('', include('django.contrib.auth.urls')),
-    path('sign-up', sign_up, name='sign_up')
+    path('sign-up', sign_up, name='sign_up'),
+    path('add_to_cart', add_to_cart, name='add_to_cart'),
+    path('open_cart', open_cart, name='open_cart')
 ]
 
 
