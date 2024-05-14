@@ -1,0 +1,9 @@
+{% load static %}
+
+<link href= "{% static "css/login_form_css.css" %}" rel="stylesheet" />
+
+<form method="post">
+{% csrf_token %}{{form}}
+<p>Don't have an account? Create one <a href="/sigh-up">Here</a></p>
+<button type="submit" class="btn btn-success">Login</button>
+</form>
