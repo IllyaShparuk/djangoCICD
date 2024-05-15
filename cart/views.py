@@ -18,8 +18,19 @@ def add_to_cart(request):
     user_cart.calculate_cart_price()
 
     cart_items = CartItem.objects.filter(cart=user_cart)
-    games = [cart_item.product for cart_item in cart_items]
-    return render(request, 'user_orders.html', context={'games' : games})
+    return render(request, 'user_orders.html', context={'cart_items' : cart_items})
+
+
+def delete_from_cart(request):
+    cart_item_id = request.GET.get('cart_item_id')
+    cart_item = CartItem.objects.get(id=cart_item_id)
+    cart_item.delete()
+    user_cart, _ = Cart.objects.get_or_create(user=request.user, is_paid=False, defaults={'cart_price': 0})
+
+    cart_items = CartItem.objects.filter(cart=user_cart)
+
+    return render(request, 'user_orders.html', context={'cart_items': cart_items})
+
 
 
 def open_cart(request):
@@ -27,5 +38,4 @@ def open_cart(request):
         return redirect('login/')
     user_cart, _ = Cart.objects.get_or_create(user=request.user, is_paid=False, defaults={'cart_price': 0})
     cart_items = CartItem.objects.filter(cart=user_cart)
-    games = [cart_item.product for cart_item in cart_items]
-    return render(request, 'user_orders.html', context={'games' : games})
+    return render(request, 'user_orders.html', context={'cart_items' : cart_items})
