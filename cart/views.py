@@ -16,7 +16,6 @@ def add_to_cart(request):
     user_cart, _ = Cart.objects.get_or_create(user=request.user, is_paid=False, defaults={'cart_price': 0})
     CartItem.objects.create(cart=user_cart, product=product)
     user_cart.calculate_cart_price()
-
     cart_items = CartItem.objects.filter(cart=user_cart)
     return render(request, 'user_orders.html', context={'cart_items' : cart_items})
 
@@ -32,6 +31,10 @@ def delete_from_cart(request):
     return render(request, 'user_orders.html', context={'cart_items': cart_items})
 
 
+def clear_cart(request):
+    user_cart = Cart.objects.get(user=request.user, is_paid=False)
+    user_cart.delete()
+
 
 def open_cart(request):
     if request.user.id is None:
@@ -39,3 +42,5 @@ def open_cart(request):
     user_cart, _ = Cart.objects.get_or_create(user=request.user, is_paid=False, defaults={'cart_price': 0})
     cart_items = CartItem.objects.filter(cart=user_cart)
     return render(request, 'user_orders.html', context={'cart_items' : cart_items})
+
+
