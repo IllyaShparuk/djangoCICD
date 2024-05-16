@@ -3,12 +3,38 @@
 {% block content %}
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
+        <!--Search button-->
+        <form class="d-inline-flex mb-3" action="{% url 'game_search' %}" method="GET">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+            <button class="btn btn-outline-dark" type="submit">Search</button>
+        </form>
+        
+        <div class="row">
+            <div class="col text-end">
+                <div class="dropdown">
+                    <button class="btn btn-outline-dark dropdown-toggle" type="button" id="sortMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sort by
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="sortMenuButton">
+                        <li><a class="dropdown-item" href="{% url 'sort_date' %}?sort=asc"> Dates ↑</a></li>
+                        <li><a class="dropdown-item" href="{% url 'sort_date' %}?sort=desc"> Dates ↓</a></li>
+                        <div class="dropdown-divider"></div>
+                        <li><a class="dropdown-item" href="{% url 'sort_rating' %}?sort=asc">Rating ↑</a></li>
+                        <li><a class="dropdown-item" href="{% url 'sort_rating' %}?sort=desc">Rating ↓</a></li>
+                        <div class="dropdown-divider"></div>
+                        <li><a class="dropdown-item" href="{% url 'sort_price' %}?sort=asc"> Price ↑</a></li>
+                        <li><a class="dropdown-item" href="{% url 'sort_price' %}?sort=desc"> Price ↓</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             {% for game in games %}
             <div class="col mb-5">
                 <div class="card h-100">
                     <!-- Product image-->
-                   <img class="card-img-top" alt="" src={{ game.game_photo.url }} />
+                   <img class="card-img-top" alt="" src="{{ game.game_photo.url }}" />
                     <!-- Product details-->
                     <div class="card-body p-4">
                         <div class="text-center">
