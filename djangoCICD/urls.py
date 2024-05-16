@@ -23,6 +23,7 @@ from main.views import home
 from account.views import sign_up
 from cart.views import add_to_cart, open_cart, delete_from_cart
 from user_games_lib.views import add_items_to_lib, open_user_lib
+from main.views import game_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,7 +34,8 @@ urlpatterns = [
     path('open_cart', open_cart, name='open_cart'),
     path('delete_from_cart', delete_from_cart, name='delete_from_cart'),
     path('add_items_to_lib', add_items_to_lib, name='add_items_to_lib'),
-    path('open_user_lib', open_user_lib, name='open_user_lib')
+    path('open_user_lib', open_user_lib, name='open_user_lib'),
+    path('game_list', game_list, name='game_list')
 ]
 
 
