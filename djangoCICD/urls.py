@@ -23,7 +23,7 @@ from main.views import home
 from account.views import sign_up
 from cart.views import add_to_cart, open_cart, delete_from_cart
 from user_games_lib.views import add_items_to_lib, open_user_lib
-from main.views import sort_date, sort_rating
+from main.views import sort_date, sort_rating, sort_price
 
 
 urlpatterns = [
@@ -37,7 +37,8 @@ urlpatterns = [
     path('add_items_to_lib', add_items_to_lib, name='add_items_to_lib'),
     path('open_user_lib', open_user_lib, name='open_user_lib'),
     path('sort_date', sort_date, name='sort_date'),
-    path('sort_rating', sort_rating, name='sort_rating')
+    path('sort_rating', sort_rating, name='sort_rating'),
+    path('sort_price', sort_price, name='sort_price')
 ]
 
 

@@ -24,3 +24,12 @@ def sort_rating(request):
     else:
         games = Game.objects.all().order_by('rating')
     return render(request, 'main.html', {'games': games, 'sort_order': sort_order})
+
+
+def sort_price(request):
+    sort_order = request.GET.get('sort')
+    if sort_order == 'desc':
+        games = Game.objects.all().order_by('-price')
+    else:
+        games = Game.objects.all().order_by('price')
+    return render(request, 'main.html', {'games': games, 'sort_order': sort_order})
