@@ -27,7 +27,7 @@ def delete_from_cart(request):
     user_cart, _ = Cart.objects.get_or_create(user=request.user, is_paid=False, defaults={'cart_price': 0})
 
     cart_items = CartItem.objects.filter(cart=user_cart)
-
+    user_cart.calculate_cart_price()
     return render(request, 'user_orders.html', context={'cart_items': cart_items, 'cart' : user_cart})
 
 
