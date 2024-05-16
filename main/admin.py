@@ -1,5 +1,9 @@
 from django.contrib import admin
 from .models import Game, GameDeveloper
+from rangefilter.filters import (
+    DateRangeFilterBuilder,
+    NumericRangeFilterBuilder
+)
 
 
 @admin.register(GameDeveloper)
@@ -10,7 +14,11 @@ class GameDeveloperAdmin(admin.ModelAdmin):
 
 
 @admin.register(Game)    
-class GameAdmin(admin.ModelAdmin):    
+class GameAdmin(admin.ModelAdmin):
+    list_filter = (('price', NumericRangeFilterBuilder()),
+                   ('rating', NumericRangeFilterBuilder()),
+                   'genre',
+                   ('release_date', DateRangeFilterBuilder()))
     list_display = ('id', 'game_name', 'price', 'rating', 'genre', 'release_date', 'developer', 'game_photo')
     list_editable = ('game_name', 'price', 'rating', 'genre', 'release_date', 'developer', 'game_photo')
 

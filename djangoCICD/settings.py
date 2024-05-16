@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'account.apps.AccountConfig',
     'cart.apps.CartConfig',
-    'user_games_lib.apps.UserGamesLibConfig'
+    'user_games_lib.apps.UserGamesLibConfig',
+    'rangefilter'
 ]
 
 MIDDLEWARE = [
