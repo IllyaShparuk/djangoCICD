@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+
 class GameDeveloper(models.Model):
     developer_name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
@@ -21,6 +22,11 @@ class Game(models.Model):
     release_date = models.DateField()
     developer = models.ForeignKey(GameDeveloper, on_delete= models.CASCADE, related_name='games')
     game_photo = models.ImageField(upload_to='games_photo/', blank=True, null=True)
+
+    def rating_output(self):
+        rating = round(self.rating)
+        stars = "★" * rating + "☆" * (5 - rating)
+        return stars
     
         
 
