@@ -10,8 +10,10 @@
                         Sort by
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="sortMenuButton">
-                        <li><a class="dropdown-item" href="{% url 'game_list' %}?sort=asc">Release Date (Ascending)</a></li>
-                        <li><a class="dropdown-item" href="{% url 'game_list' %}?sort=desc">Release Date (Descending)</a></li>
+                        <li><a class="dropdown-item" href="{% url 'sort_date' %}?sort=asc">From the oldest games</a></li>
+                        <li><a class="dropdown-item" href="{% url 'sort_date' %}?sort=desc">From the newest games </a></li>
+                         <li><a class="dropdown-item" href="{% url 'sort_rating' %}?sort=asc">From the lowest Rating</a></li>
+                        <li><a class="dropdown-item" href="{% url 'sort_rating' %}?sort=desc">From the highest Rating</a></li>
                     </ul>
                 </div>
             </div>
