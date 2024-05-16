@@ -10,6 +10,12 @@ def sign_up(request):
             user = form.save()
             login(request, user)
             return redirect('/')
-    else: 
+    else:
         form = RegisterForm()
     return render(request, 'registration/sign_up.html', {"form" : form})
+
+
+
+def user_logout(request):
+    logout(request)
+    return redirect("/")

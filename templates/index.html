@@ -23,14 +23,32 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'open_user_lib' %}">{{user.username}} Library</a></li>
+                        {% if user.is_active%}
+                        	<li class="nav-item"><a class="nav-link" href="{% url 'open_user_lib' %}">{{user.username}}'s Library</a></li>
+                        {% else %}
+
+                        {% endif %}
                     </ul>
-                    <form class="d-flex">
+                    <form action="/open_cart" class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
-                            <a href='/open_cart'>Cart</a>
+                            Cart
                         </button>
                     </form>
+                    {% if user.is_active %}
+                    	<form action="/user_logout" class="d-flex">
+                            <button style="margin-left: 30px" class="btn btn-outline-dark" type="submit">
+                                Log out
+                            </button>
+                        </form>
+                    {% else %}
+                        <form action="/sign-up" class="d-flex">
+                            <button style="margin-left: 30px" class="btn btn-outline-dark" type="submit">
+                                Sign up
+                            </button>
+                        </form>
+                    {% endif %}
+
                 </div>
             </div>
         </nav>
