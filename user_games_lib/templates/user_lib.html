@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Orders</title>
+    <link rel="stylesheet" href="{% static 'css/user_lib_css.css' %}">
+</head>
+<body>
+    <div class="user-info">
+        <h1 class="user-name">Library of {{ user.username }}</h1>
+    </div>
+    <div class="top-buttons">
+        <a href='/' class="btn btn-secondary">Home</a>
+    </div>
+    <div class="games-table">
+         {% if user_games_list %} 
+        <table>
+            <thead>
+                <tr>
+                    <th>Game Photo</th>
+                    <th>Game Name</th>
+                    <th>Game code</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in user_games_list %}
+                <tr>
+                    <td><img src="{{ item.game.game_photo.url }}" alt="{{ item.game.game_name }}" class="game-photo"></td>
+                    <td>{{ item.game.game_name }}</td>
+                    <td>{{item.game_key}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty-lib">
+            <h1>No items in library yet</h1>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
