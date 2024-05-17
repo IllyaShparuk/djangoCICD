@@ -16,6 +16,6 @@ def sign_up(request):
 
 
 
-def user_logout(request):
+def user_logout(request): # test
     logout(request)
     return redirect("/")
