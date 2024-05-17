@@ -27,8 +27,3 @@ class Game(models.Model):
         rating = round(self.rating)
         stars = "★" * rating + "☆" * (5 - rating)
         return stars
-    
-        
-
-
-    
