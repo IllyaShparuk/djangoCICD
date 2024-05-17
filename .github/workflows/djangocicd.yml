@@ -28,15 +28,15 @@ jobs:
       run: docker build . --file Dockerfile --tag my-image-name:djangocicd
 
     - name: Run Docker container
-      run: docker run --name DjangoContainer -d -e DJANGO_SETTINGS_MODULE=Site.settings my-image-name:djangocicd
+      run: docker run --name DjangoContainer -d -e DJANGO_SETTINGS_MODULE=djangoCICD.settings my-image-name:djangocicd
 
     - name: Run Django tests
-      run: docker exec -i DjangoContainer python manage.py test
+      run: docker exec DjangoContainer python manage.py test
 
     - name: Generate HTML report
       run: |
-        docker exec -i DjangoContainer coverage run manage.py test
-        docker exec -i DjangoContainer coverage html
+        docker exec DjangoContainer coverage run manage.py test
+        docker exec DjangoContainer coverage html
 
     - name: Upload reports
       uses: actions/upload-artifact@v2
