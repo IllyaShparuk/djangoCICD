@@ -31,12 +31,12 @@ jobs:
       run: docker run --name DjangoContainer -d -e DJANGO_SETTINGS_MODULE=Site.settings my-image-name:djangocicd
 
     - name: Run Django tests
-      run: docker exec DjangoContainer python manage.py test
+      run: docker exec -it DjangoContainer -d -i -t python manage.py test
 
     - name: Generate HTML report
       run: |
-        docker exec DjangoContainer coverage run manage.py test
-        docker exec DjangoContainer coverage html
+        docker exec -it DjangoContainer -d -i -t coverage run manage.py test
+        docker exec -it DjangoContainer -d -i -t coverage html
 
     - name: Upload reports
       uses: actions/upload-artifact@v2
