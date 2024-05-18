@@ -1,0 +1,1 @@
+web: gunicorn djangoCICD.wsgi --log-file - --log-level debug
