@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+from django.views.static import serve
 
 from djangoCICD import settings
 from main.views import home
@@ -41,9 +42,6 @@ urlpatterns = [
     path('sort_date', sort_date, name='sort_date'),
     path('sort_rating', sort_rating, name='sort_rating'),
     path('sort_price', sort_price, name='sort_price'),
-    path('game_search', game_search, name='game_search')
+    path('game_search', game_search, name='game_search'),
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})
 ]
-
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
