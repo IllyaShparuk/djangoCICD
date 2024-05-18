@@ -11,7 +11,7 @@ class Cart(models.Model):
     cart_price = models.DecimalField(max_digits=100, decimal_places=2, default=Decimal('0.00'))
 
     def calculate_cart_price(self):
-        total_price = self.cart_items.aggregate(total=Sum('product__price'))['total'] or Decimal('0')
+        total_price = round(self.cart_items.aggregate(total=Sum('product__price'))['total'] or Decimal('0'), 2)
         self.cart_price = total_price
         self.save()
 
