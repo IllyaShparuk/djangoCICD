@@ -28,7 +28,9 @@ jobs:
       run: docker build . --file Dockerfile --tag my-image-name:djangocicd
 
     - name: Run Docker container
-      run: docker run --name DjangoContainer -d -e DJANGO_SETTINGS_MODULE=djangoCICD.settings -e SECRET_KEY=${{secrets.SECRET_KEY}} my-image-name:djangocicd
+      env:
+        SECRET_KEY: ${{secrets.SECRET_KEY}}
+      run: docker run --name DjangoContainer -d -e DJANGO_SETTINGS_MODULE=djangoCICD.settings -e SECRET_KEY=$SECRET_KEY my-image-name:djangocicd
 
     - name: Run Django tests
       run: docker exec DjangoContainer python manage.py test
