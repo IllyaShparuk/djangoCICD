@@ -42,6 +42,7 @@
                             <h5 class="fw-bolder">{{ game.game_name }}</h5>
                             <!-- Release date -->
                             <p>Release Date: {{ game.release_date }}</p>
+                            <p><img style="height: 40px" alt="" title="{{ game.developer.ref_to_social }}" src="{{ game.developer.developer_photo.url }}"> {{ game.developer.developer_name }}</p>
                             <!-- Product price-->
                             <p>{{ game.rating_output }}</p>
                             <p>{{ game.price }} $</p>
