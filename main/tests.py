@@ -7,6 +7,7 @@ class GameSearchTestCase(TestCase):
         self.developer = GameDeveloper.objects.create(
             developer_name='Test Developer',
             slug='test-developer',
+            developer_photo='http://example.com/dev1.jpg',
             ref_to_social='http://example.com'
         )
         self.game1 = Game.objects.create(
@@ -42,6 +43,7 @@ class SortDateTestCase(TestCase):
         self.developer = GameDeveloper.objects.create(
             developer_name='Test Developer',
             slug='test-developer',
+            developer_photo='http://example.com/dev1.jpg',
             ref_to_social='http://example.com'
         )
         self.game1 = Game.objects.create(
@@ -83,6 +85,7 @@ class RatingOutputTestCase(TestCase):
         self.developer = GameDeveloper.objects.create(
             developer_name='Test Developer',
             slug='test-developer',
+            developer_photo='http://example.com/dev1.jpg',
             ref_to_social='http://example.com'
         )
         self.game1 = Game.objects.create(
