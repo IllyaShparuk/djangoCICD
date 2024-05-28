@@ -27,7 +27,8 @@ jobs:
     - name: Run Django tests
       env:
         SECRET_KEY: ${{secrets.SECRET_KEY}}
-      run: python manage.py test -e SECRET_KEY=$SECRET_KEY
+        DJANGO_SETTINGS_MODULE: djangoCICD.settings
+      run: python manage.py test
 
   deploy:
       runs-on: ubuntu-latest
