@@ -24,28 +24,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Build Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:djangocicd
-
-    - name: Run Docker container
-      env:
-        SECRET_KEY: ${{secrets.SECRET_KEY}}
-      run: docker run --name DjangoContainer -d -e DJANGO_SETTINGS_MODULE=djangoCICD.settings -e SECRET_KEY=$SECRET_KEY my-image-name:djangocicd
-
     - name: Run Django tests
-      run: docker exec DjangoContainer python manage.py test
-
-    - name: Generate HTML report
-      run: |
-        docker exec DjangoContainer coverage run manage.py test
-        docker exec DjangoContainer coverage html
-
-    - name: Upload reports
-      uses: actions/upload-artifact@v2
-      with:
-        name: Test and lint reports
-        path: |
-          htmlcov/index.html
+      run: python manage.py test
 
   deploy:
       runs-on: ubuntu-latest
