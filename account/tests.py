@@ -40,3 +40,4 @@ class AuthViewsTestCase(TestCase):
         self.assertRedirects(response, '/')
         self.assertNotIn('_auth_user_id', self.client.session)
 
+##
